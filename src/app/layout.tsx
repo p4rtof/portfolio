@@ -14,8 +14,8 @@ const fontPlaypenSans = Playpen_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Fadhla | Portfolio",
-  description: "Front-End Developer Portfolio",
+  title: "Aaron's Portfolio",
+  description: "Front-End Developer",
 };
 
 export default function RootLayout({

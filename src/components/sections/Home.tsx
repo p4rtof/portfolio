@@ -38,7 +38,7 @@ export default function Hero() {
         whileHover={{ rotate: -5 }}
         whileDrag={{ scale: 1.02, cursor: "grabbing" }}
         transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.2 }}
-        className="absolute top-1/3 right-1/4 w-28 h-28 bg-[#fdf2d5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)] border border-black/5 flex items-center justify-center text-5xl cursor-grab rounded-sm"
+        className="absolute top-1/3 right-1/4 w-36 h-36 bg-[#fdf2d5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)]  border-black/5 flex items-center justify-center text-5xl cursor-grab"
       >
         👋
       </motion.div>
@@ -54,7 +54,7 @@ export default function Hero() {
         whileHover={{ rotate: 12 }}
         whileDrag={{ scale: 1.02, cursor: "grabbing" }}
         transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.4 }}
-        className="absolute font-playpen-sans bottom-1/3 right-1/3 w-32 h-32 bg-[#bcf5c5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)] border border-black/5 flex items-center justify-center p-4 text-center font-caveat text-lg text-gray-700 cursor-grab rounded-sm"
+        className="absolute font-playpen-sans bottom-1/3 right-1/3 w-36 h-36 bg-[#bcf5c5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)] border-black/5 flex items-center justify-center p-4 text-center text-lg text-gray-700 cursor-grab"
       >
         Available
         <br />

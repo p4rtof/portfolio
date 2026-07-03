@@ -4,18 +4,18 @@ export type Project = {
   title: string;
   description: string;
   image: string;
-  tag: string; // "USE CASE" | "TEMPLATE" | dst
+  tags: string[]; // bisa lebih dari satu, mis. ["GameDev", "Godot", "Team Project"]
 };
 
 export const projects: Project[] = [
   {
     id: 1,
-    slug: "paragon",
-    title: "Paragon",
+    slug: "pandawara",
+    title: "Ekspedisi Ciliwung",
     description:
       "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
-    image: "/projects/paragon.jpg",
-    tag: "USE CASE",
+    image: "/images/project/pandawara.png",
+    tags: ["GameDev", "Godot", "Team Project"],
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ export const projects: Project[] = [
     description:
       "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
     image: "/projects/enchant.jpg",
-    tag: "TEMPLATE",
+    tags: ["Template"],
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     description:
       "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
     image: "/projects/lumen.jpg",
-    tag: "USE CASE",
+    tags: ["Use Case"],
   },
   {
     id: 4,
@@ -42,6 +42,6 @@ export const projects: Project[] = [
     description:
       "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
     image: "/projects/nova.jpg",
-    tag: "TEMPLATE",
+    tags: ["Template"],
   },
 ];

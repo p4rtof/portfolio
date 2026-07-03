@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/data/projects';
+import { getTagColor } from '@/lib/tagColors';
 
 type ProjectCardProps = Project & {
   rotate?: number;
@@ -24,7 +25,7 @@ export default function ProjectCard({
   title,
   description,
   image,
-  tag,
+  tags,
   rotate = -1,
 }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
@@ -32,6 +33,7 @@ export default function ProjectCard({
   return (
     <Link href={`/projects/${slug}`} className="block">
       <motion.div
+        layout
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
         initial={{ opacity: 0, y: 20 }}
@@ -74,18 +76,29 @@ export default function ProjectCard({
 
         <div className="relative w-full md:w-64 h-48 flex-shrink-0 overflow-hidden rounded-sm border border-neutral-200">
           <Image src={image} alt={title} fill className="object-cover" />
-          <span className="absolute bottom-3 left-3 bg-white/90 text-neutral-800 text-[10px] font-bold tracking-wider px-2 py-1 rounded-sm">
-            {tag}
-          </span>
         </div>
 
         <div className="flex flex-col justify-center">
           <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-3">
             {title}
           </h3>
-          <p className="font-playpen-sans text-sm text-neutral-500 leading-relaxed">
+          <p className="font-playpen-sans text-sm text-neutral-500 leading-relaxed mb-4">
             {description}
           </p>
+
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => {
+              const color = getTagColor(tag);
+              return (
+                <span
+                  key={tag}
+                  className={`${color.bg} ${color.text} text-[11px] font-bold tracking-wide px-2.5 py-1 rounded-full`}
+                >
+                  {tag}
+                </span>
+              );
+            })}
+          </div>
         </div>
       </motion.div>
     </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight, Download} from "lucide-react";
 import { useRef, useState } from "react";
 // Import data dari file profile.ts
 import { skills, socials, experiences } from "@/data/profile"; 
@@ -33,40 +33,23 @@ export default function About() {
         ref={dragAreaRef}
         className="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto"
       >
-        {/* =============== KIRI: Foto + Sticky Notes =============== */}
-        <div className="relative">
-          <div className="relative mb-16 pl-4 flex flex-col items-center md:items-start">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-neutral-700 shadow-md bg-neutral-200 z-10"
-            >
-              <img
-                src="/images/profile.jpeg"
-                alt="Profile"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </motion.div>
-
-            <div className="absolute top-36 md:top-32 left-32 md:left-48 flex items-end">
-              <svg 
-                width="70" 
-                height="82" 
-                viewBox="0 0 70 82" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-neutral-600 -rotate-12"
-              >
-                <path d="M65.133 77.292C55.556 76.999 45.909 77.536 36.428 76.356C26.946 75.176 17.355 72.019 11.286 65.729C3.177 57.326 3.074 44.9 7.858 34.828C12.641 24.756 21.539 16.543 30.48 8.771" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M4.5 8.708C15.498 8.986 26.958 9.172 36.918 4.5C31.654 9.184 28.014 15.659 26.747 22.59" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <p className="font-playpen-sans text-2xl font-bold text-neutral-700 whitespace-nowrap ml-2 -mt-4">
-                Yours Truly
-              </p>
-            </div>
-          </div>
+        {/* =============== KIRI: Foto =============== */}
+<div className="relative flex flex-col items-center"> 
+  <div className="relative mb-16 flex flex-col items-center">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-neutral-700 shadow-md bg-neutral-200 z-10"
+    >
+      <img
+        src="/images/profile.jpeg"
+        alt="Profile"
+        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+      />
+    </motion.div>
+  </div>
 
           <div className="grid grid-cols-2 gap-4 max-w-sm relative mx-auto md:mx-0 mt-12 md:mt-0">
             <StickyNote dragAreaRef={dragAreaRef} color="#fdf2d5" rotate={-3}>
@@ -80,7 +63,7 @@ export default function About() {
             </StickyNote>
             <StickyNote dragAreaRef={dragAreaRef} color="#93c5fd" rotate={-4} className="flex-col gap-1">
               <MapPin size={24} className="mx-auto mb-1 text-neutral-700" />
-              Bogor, ID
+              Jakarta, ID
             </StickyNote>
             <StickyNote dragAreaRef={dragAreaRef} color="#c4b5fd" rotate={5}>
               Always learning & building
@@ -92,7 +75,7 @@ export default function About() {
         <div className="space-y-12">
           
           <div>
-            <h3 className="font-fraunces text-2xl font-bold text-neutral-800 mb-6">
+            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-6">
               Links
             </h3>
             <div className="flex gap-4">
@@ -103,7 +86,7 @@ export default function About() {
           </div>
 
           <div>
-            <h3 className="font-fraunces text-2xl font-bold text-neutral-800 mb-6">
+            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-6">
               Skills
             </h3>
             <div className="flex flex-wrap gap-3">
@@ -119,7 +102,7 @@ export default function About() {
           </div>
 
           <div>
-            <h3 className="font-fraunces text-2xl font-bold text-neutral-800 mb-6">
+            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-6">
               Experience
             </h3>
             <div className="space-y-8">
@@ -161,34 +144,37 @@ export default function About() {
             className="pt-4"
           >
             <a
-              href="/resume.pdf"
-              download
-              className="group inline-flex flex-col items-start gap-1"
-            >
-              <div className="flex items-center gap-2 text-neutral-800 group-hover:text-neutral-900 transition-colors">
-                <span className="font-playpen-sans text-2xl font-bold">
-                  Download Resume
-                </span>
-                <ArrowUpRight size={24} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </div>
-              
-              <svg 
-                width="140" 
-                height="10" 
-                viewBox="0 0 120 12" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-neutral-400 group-hover:text-neutral-700 transition-colors"
-              >
-                <path 
-                  d="M2 10C35.5 -1.5 84.5 -1.5 118 10" 
-                  stroke="currentColor" 
-                  strokeWidth="2.5" 
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
+  href="/resume.pdf"
+  download
+  className="group inline-flex flex-col items-start gap-1"
+>
+  <div className="flex items-center gap-2 text-neutral-800 group-hover:text-neutral-900 transition-colors">
+    {/* Ikon Unduh ditambahkan di sini */}
+    <Download size={24} /> 
+    
+    <span className="font-playpen-sans text-xl md:text-2xl font-bold">
+      Download Resume
+    </span>
+    <ArrowUpRight size={24} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+  </div>
+  
+  <svg 
+    width="140" 
+    height="10" 
+    viewBox="0 0 120 12" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    className="text-neutral-400 group-hover:text-neutral-700 transition-colors"
+  >
+    <path 
+      d="M2 10C35.5 -1.5 84.5 -1.5 118 10" 
+      stroke="currentColor" 
+      strokeWidth="2.5" 
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</a>
           </motion.div>
         </div>
       </div>
@@ -203,7 +189,7 @@ function StickyNote({ children, color, rotate = 0, className = "", dragAreaRef }
       drag
       dragMomentum={false}
       dragElastic={0.05}
-      dragConstraints={dragAreaRef}
+      dragConstraints={false}
       initial={{ opacity: 0, y: 10, rotate: 0 }}
       whileInView={{ opacity: 1, y: 0, rotate }}
       whileHover={{ scale: 1.04, rotate: 0 }}
@@ -211,7 +197,8 @@ function StickyNote({ children, color, rotate = 0, className = "", dragAreaRef }
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 250, damping: 18 }}
       style={{ backgroundColor: color }}
-      className={`font-playpen-sans w-full aspect-square p-4 flex items-center justify-center text-center text-lg font-bold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-2 border-neutral-700/10 rounded-xl cursor-grab select-none ${className}`}
+      // Bagian 'rounded-xl' sudah dihapus di bawah ini
+      className={`font-playpen-sans w-42 h-42 aspect-square p-4 flex items-center justify-center text-center text-sm md:text-base font-semibold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-neutral-700/10 cursor-grab select-none ${className}`}
     >
       {children}
     </motion.div>

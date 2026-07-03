@@ -5,14 +5,8 @@ import { FaTwitter, FaLinkedin, FaDribbble, FaInstagram } from 'react-icons/fa';
 import { ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-
-
-const socials = [
-  { icon: FaTwitter, href: "https://twitter.com/yourhandle" },
-  { icon: FaLinkedin, href: "https://linkedin.com/in/yourhandle" },
-  { icon: FaDribbble, href: "https://dribbble.com/yourhandle" },
-  { icon: FaInstagram, href: "https://instagram.com/yourhandle" },
-];
+import SocialLink from '@/components/ui/SocialLink';
+import { socials } from '@/data/profile'; // Sesuaikan path-nya
 
 export default function Contact() {
   return (
@@ -49,8 +43,8 @@ export default function Contact() {
           </a>
           
           <div className="flex justify-center gap-4">
-            {socials.map(({ icon: Icon, href }, i) => (
-              <SocialIcon key={i} icon={Icon} href={href} />
+            {socials.map((social, i) => (
+              <SocialIcon key={i} icon={social.icon} href={social.href} />
             ))}
           </div>
         </motion.div>
@@ -69,6 +63,7 @@ export default function Contact() {
               placeholder="Your Name"
               className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
               required
+              
             />
             <input
               type="email"

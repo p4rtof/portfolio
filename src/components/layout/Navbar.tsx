@@ -5,7 +5,7 @@ import { Home, User, FolderKanban, Mail } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
-  { id: 'home', label: 'Home', icon: Home, href: '#home' },
+  { id: 'home', label: 'Home', icon: Home, href: '/' },
   { id: 'about', label: 'About', icon: User, href: '#about' },
   { id: 'projects', label: 'Projects', icon: FolderKanban, href: '#projects' },
   { id: 'contact', label: 'Contact', icon: Mail, href: '#contact' },
@@ -50,7 +50,7 @@ export default function Navbar() {
                   scale: isHovered ? 1.2 : 1,
                 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                className="flex h-12 w-12 items-center justify-center rounded-full text-neutral-500 hover:text-neutral-900 bg-transparent hover:bg-white/80 hover:shadow-sm cursor-pointer transition-colors"
+                className="flex h-10 w-12 items-center justify-center rounded-full text-neutral-500 hover:text-neutral-900 bg-transparent hover:bg-white/80 hover:shadow-sm cursor-pointer transition-colors"
               >
                 <Icon size={22} strokeWidth={2} />
               </motion.a>
