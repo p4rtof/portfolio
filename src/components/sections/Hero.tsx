@@ -20,7 +20,7 @@ export default function Hero() {
         className="text-center z-10 pointer-events-none"
       >
         <h1 className="text-3xl font-playpen-sans md:text-5xl font-extrabold text-neutral-600 mb-4 tracking-tight">
-          Hi, I'm Fadhla
+          Hi, I'm Aaron
         </h1>
         <p className="text-lg md:text-xl font-playpen-sans text-gray-500 italic">
           Front-End Developer crafting web experiences.

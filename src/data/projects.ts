@@ -1,32 +1,47 @@
-import { Project } from "@/types";
+export type Project = {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  tag: string; // "USE CASE" | "TEMPLATE" | dst
+};
 
 export const projects: Project[] = [
   {
-    id: "clinic-management-system",
-    title: "Clinic Management System",
+    id: 1,
+    slug: "paragon",
+    title: "Paragon",
     description:
-      "Sistem manajemen klinik dengan dashboard khusus untuk admin dan dokter, mencakup pengelolaan jadwal, rekam medis, dan data pasien.",
-    image: "/images/projects/clinic-system.png",
-    techTags: ["Next.js", "PostgreSQL", "Prisma"],
-    demoUrl: "https://demo-link.com", // ganti atau hapus kalau belum ada
-    repoUrl: "https://github.com/username/clinic-system",
+      "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
+    image: "/projects/paragon.jpg",
+    tag: "USE CASE",
   },
   {
-    id: "gkv-data-visualization",
-    title: "Data Visualization (GKV)",
+    id: 2,
+    slug: "enchant",
+    title: "Enchant",
     description:
-      "Visualisasi data lingkungan interaktif menggunakan Plotly dan Canvas untuk menampilkan tren dan pola data secara real-time.",
-    image: "/images/projects/gkv-dataviz.png",
-    techTags: ["Plotly", "Canvas", "JavaScript"],
-    repoUrl: "https://github.com/username/gkv-dataviz",
+      "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
+    image: "/projects/enchant.jpg",
+    tag: "TEMPLATE",
   },
   {
-    id: "flappy-bird-clone",
-    title: "Flappy Bird Clone",
+    id: 3,
+    slug: "lumen",
+    title: "Lumen",
     description:
-      "Game 2D klasik yang dibangun ulang dengan fokus pada mekanik collision detection dan sistem input yang responsif.",
-    image: "/images/projects/flappy-bird.png",
-    techTags: ["Unity", "C#"],
-    repoUrl: "https://github.com/username/flappy-bird-clone",
+      "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
+    image: "/projects/lumen.jpg",
+    tag: "USE CASE",
+  },
+  {
+    id: 4,
+    slug: "nova",
+    title: "Nova",
+    description:
+      "Step into the journey of a unique project. Here, I unravel the threads of my thought process and exciting steps taken from inception to execution.",
+    image: "/projects/nova.jpg",
+    tag: "TEMPLATE",
   },
 ];

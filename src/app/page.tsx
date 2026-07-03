@@ -12,7 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <TechStack />
+      {/* <TechStack /> */}
       <Projects />
       <Contact />
     </main>
