@@ -17,10 +17,10 @@ export default function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-center z-10 pointer-events-none"
+        className="text-center z-10 pointer-events-none px-6"
       >
         <h1 className="text-3xl font-playpen-sans md:text-5xl font-extrabold text-neutral-600 mb-4 tracking-tight">
-          Hi, I'm Aaron
+          Hi, I&apos;m Aaron
         </h1>
         <p className="text-lg md:text-xl font-playpen-sans text-gray-500 italic">
           Front-End Developer crafting web experiences.
@@ -38,7 +38,7 @@ export default function Hero() {
         whileHover={{ rotate: -5 }}
         whileDrag={{ scale: 1.02, cursor: "grabbing" }}
         transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.2 }}
-        className="absolute top-1/3 right-1/4 w-36 h-36 bg-[#fdf2d5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)]  border-black/5 flex items-center justify-center text-5xl cursor-grab"
+        className="absolute top-[14%] left-[8%] md:top-[20%] md:left-[14%] w-24 h-24 md:w-36 md:h-36 bg-[#fdf2d5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)] border-black/5 flex items-center justify-center text-3xl md:text-5xl cursor-grab z-10"
       >
         👋
       </motion.div>
@@ -54,7 +54,7 @@ export default function Hero() {
         whileHover={{ rotate: 12 }}
         whileDrag={{ scale: 1.02, cursor: "grabbing" }}
         transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.4 }}
-        className="absolute font-playpen-sans bottom-1/3 right-1/3 w-36 h-36 bg-[#bcf5c5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)] border-black/5 flex items-center justify-center p-4 text-center text-lg text-gray-700 cursor-grab"
+        className="absolute font-playpen-sans bottom-[16%] right-[8%] md:bottom-[20%] md:right-[14%] w-24 h-24 md:w-36 md:h-36 bg-[#bcf5c5] shadow-[2px_3px_4px_rgba(0,0,0,0.15)] border-black/5 flex items-center justify-center p-3 md:p-4 text-center text-sm md:text-lg text-gray-700 cursor-grab z-10"
       >
         Available
         <br />
