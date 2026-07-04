@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, ArrowUpRight, Download } from "lucide-react";
 import { useRef, useState } from "react";
 // Import data dari file profile.ts
-import { skills, socials, experiences, academic } from "@/data/profile";
+import { skills, socials, experiences, academic, about, name} from "@/data/profile";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function About() {
@@ -46,8 +46,13 @@ export default function About() {
                 className="w-full h-full object-cover transition-all duration-500"
               />
             </motion.div>
+            <div className="font-playpen-sans text-4xl font-bold text-neutral-800 mt-8">
+              {name}
+            </div>
 
-            <div className="font-playpen-sans text-justify text-neutral-600 text-base leading-relaxed mt-10 px-14">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo culpa quo quisquam doloribus, voluptatem sequi voluptatum totam. Quidem fuga, iusto ad neque itaque odit! Eum ratione consequatur odio id rem!</div>
+            <div className="font-playpen-sans text-justify text-neutral-600 text-base leading-relaxed mt-6 px-14">
+              {about}
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4 max-w-sm relative mx-auto md:mx-0 mt-12 md:mt-0">

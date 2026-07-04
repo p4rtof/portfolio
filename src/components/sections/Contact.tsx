@@ -1,12 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaTwitter, FaLinkedin, FaDribbble, FaInstagram } from 'react-icons/fa';
 import { ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-import SocialLink from '@/components/ui/SocialLink';
-import { socials } from '@/data/profile'; // Sesuaikan path-nya
+import { socials, emailHref } from '@/data/profile';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function Contact() {
@@ -15,8 +13,11 @@ export default function Contact() {
       id="contact"
       className="relative overflow-hidden px-6 py-24 w-full bg-[#fafafa] bg-[radial-gradient(#eaeaea_2px,transparent_1px)] [background-size:32px_32px]"
     >
+      {/* wajib dirender, ini yang nampilin popup toast-nya */}
+      <Toaster position="top-center" />
+
       <div className="max-w-3xl mx-auto mb-6 flex flex-col items-center">
-        
+
         {/* --- Section Divider "Let's talk" --- */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -36,13 +37,13 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-center mb-10"
         >
-          <a 
-            href="mailto:fadhla153@gmail.com"
-            className="font-playpen-sans text-3xl md:text-4xl font-light text-neutral-700 mb-8 block hover:text-neutral-900 transition-colors"
+          <a
+            href={emailHref}
+            className="font-playpen-sans text-3xl md:text-4xl font-light text-neutral-700 mb-10 block hover:text-neutral-900 transition-colors"
           >
             aaron@gmail.com
           </a>
-          
+
           <div className="flex justify-center gap-4">
             {socials.map((social, i) => (
               <SocialIcon key={i} icon={social.icon} href={social.href} />
@@ -59,53 +60,54 @@ export default function Contact() {
           className="w-full max-w-2xl flex flex-col gap-4"
           onSubmit={async (e) => {
             e.preventDefault();
-            const form = e.target;
+            const form = e.currentTarget;
             const data = new FormData(form);
-            
-            // Munculkan status loading
-            const toastId = toast.loading("Mengirim pesan...");
-            
+
+            const toastId = toast.loading('Mengirim pesan...');
+
             try {
-              await fetch("https://formspree.io/f/mbdvqbqv", {
-                method: "POST",
+              const res = await fetch('https://formspree.io/f/mbdvqbqv', {
+                method: 'POST',
                 body: data,
-                headers: { Accept: "application/json" },
+                headers: { Accept: 'application/json' },
               });
-              
-              // Ubah loading jadi success (warna hijau otomatis)
-              toast.success("Pesan berhasil dikirim!", { id: toastId });
-              form.reset();
-            } catch (error) {
-              // Kalau gagal/error koneksi
-              toast.error("Gagal mengirim pesan, coba lagi.", { id: toastId });
+
+              if (res.ok) {
+                toast.success('Pesan berhasil dikirim!', { id: toastId });
+                form.reset();
+              } else {
+                toast.error('Gagal mengirim pesan, coba lagi.', { id: toastId });
+              }
+            } catch {
+              toast.error('Gagal mengirim pesan, coba lagi.', { id: toastId });
             }
           }}
         >
           <div className="flex flex-col md:flex-row gap-4">
             <input
-              name="name" // Tambahan wajib
+              name="name"
               type="text"
               placeholder="Your Name"
               className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
               required
             />
             <input
-              name="email" // Tambahan wajib
+              name="email"
               type="email"
               placeholder="Email Address"
               className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
               required
             />
           </div>
-          
+
           <textarea
-            name="message" // Tambahan wajib
+            name="message"
             placeholder="Message"
             rows={5}
             className="w-full p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 resize-y transition-colors"
             required
           />
-          
+
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -121,7 +123,7 @@ export default function Contact() {
   );
 }
 
-/* --- Icon sosmed dengan panah muncul pas hover (Disesuaikan border 16px) --- */
+/* --- Icon sosmed dengan panah muncul pas hover --- */
 function SocialIcon({
   icon: Icon,
   href,
@@ -139,8 +141,7 @@ function SocialIcon({
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-      // Perubahan di sini: rounded-2xl (16px) dan border-2 sesuai HTML Framer
+      transition={{ type: 'spring', stiffness: 300, damping: 15 }}
       className="relative w-12 h-12 rounded-2xl border-2 border-neutral-500 flex items-center justify-center text-neutral-600 hover:text-neutral-900 hover:border-neutral-900 transition-colors overflow-hidden"
     >
       <motion.span
@@ -148,7 +149,7 @@ function SocialIcon({
           x: hovered ? -14 : 0,
           opacity: hovered ? 0 : 1,
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <Icon size={18} />
       </motion.span>
@@ -159,7 +160,7 @@ function SocialIcon({
           x: hovered ? 0 : 14,
           opacity: hovered ? 1 : 0,
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         className="absolute"
       >
         <ArrowUpRight size={18} />

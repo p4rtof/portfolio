@@ -71,7 +71,7 @@ export default function ProjectsPage() {
           {allTags.map((tag) => {
             const color = getTagColor(tag);
             const isActive = activeTag === tag;
-            return (
+            return (  
               <button
                 key={tag}
                 onClick={() => setActiveTag(isActive ? null : tag)}

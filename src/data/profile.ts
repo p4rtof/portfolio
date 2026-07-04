@@ -1,7 +1,17 @@
 import { FaEnvelope, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 
+export const name = 
+"Aaron"
+
+export const about = 
+  "Mahasiswa S1 Ilmu Komputer di IPB University yang tertarik membangun pengalaman web yang immersive dan interaktif, sambil terus belajar dari organisasi dan program pengembangan diri.";
+
+// satu sumber link Gmail compose, dipakai di icon envelope maupun link email besar
+export const emailHref =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=fadhla153@gmail.com";
+
 export const skills = [
-  "C++", "C", "Java", "Scala", "HTML", "CSS","JavaScript",
+  "C++", "C", "Java", "Scala", "HTML", "CSS","JavaScript", "OOP",
   "Next.js",
   "React.js",
   "TailwindCSS",
@@ -12,7 +22,7 @@ export const socials = [
   { icon: FaLinkedin, href: "https://linkedin.com/in/fadhla14" },
   { icon: FaGithub, href: "https://github.com/p4rtof" },
   { icon: FaInstagram, href: "https://instagram.com/p4rtof" },
-  { icon: FaEnvelope, href: "mailto:fadhla153@gmail.com" }, 
+  { icon: FaEnvelope, href: emailHref }, 
 ];
 
 export const academic = [
@@ -44,4 +54,3 @@ export const experiences = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   }
 ];
-

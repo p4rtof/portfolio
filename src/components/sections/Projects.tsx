@@ -42,7 +42,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="flex bg-white p-4 rounded-2xl max-w-4xl mx-auto shadow-sm border flex-wrap justify-center gap-3 mb-16"
+        className="flex bg-white p-4 mt-10 rounded-2xl max-w-4xl mx-auto shadow-sm border flex-wrap justify-center gap-3 mb-16"
       >
         <div className="w-full text-center mb-2">
           <span className="font-playpen-sans text-lg font-bold text-neutral-700">
