@@ -14,7 +14,7 @@ export default function SectionHeading({ title, className = "" }: SectionHeading
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`flex items-center justify-center gap-4 mb-16 ${className}`}
+      className={`flex items-center justify-center gap-4 mb-12 ${className}`}
     >
       <span className="h-px w-16 bg-neutral-300" />
       <h2 className="font-playpen-sans text-3xl md:text-4xl font-extrabold text-neutral-700">

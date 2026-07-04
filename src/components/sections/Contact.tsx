@@ -7,6 +7,7 @@ import { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SocialLink from '@/components/ui/SocialLink';
 import { socials } from '@/data/profile'; // Sesuaikan path-nya
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Contact() {
   return (
@@ -14,7 +15,7 @@ export default function Contact() {
       id="contact"
       className="relative overflow-hidden px-6 py-24 w-full bg-[#fafafa] bg-[radial-gradient(#eaeaea_2px,transparent_1px)] [background-size:32px_32px]"
     >
-      <div className="max-w-3xl mx-auto flex flex-col items-center">
+      <div className="max-w-3xl mx-auto mb-6 flex flex-col items-center">
         
         {/* --- Section Divider "Let's talk" --- */}
         <motion.div
@@ -22,7 +23,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-4 mb-10 w-full"
+          className="flex items-center justify-center gap-4 mb-4 w-full"
         >
           <SectionHeading title="Let's Talk" />
         </motion.div>
@@ -33,7 +34,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
           <a 
             href="mailto:fadhla153@gmail.com"
@@ -56,16 +57,40 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="w-full max-w-2xl flex flex-col gap-4"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            
+            // Munculkan status loading
+            const toastId = toast.loading("Mengirim pesan...");
+            
+            try {
+              await fetch("https://formspree.io/f/mbdvqbqv", {
+                method: "POST",
+                body: data,
+                headers: { Accept: "application/json" },
+              });
+              
+              // Ubah loading jadi success (warna hijau otomatis)
+              toast.success("Pesan berhasil dikirim!", { id: toastId });
+              form.reset();
+            } catch (error) {
+              // Kalau gagal/error koneksi
+              toast.error("Gagal mengirim pesan, coba lagi.", { id: toastId });
+            }
+          }}
         >
           <div className="flex flex-col md:flex-row gap-4">
             <input
+              name="name" // Tambahan wajib
               type="text"
               placeholder="Your Name"
               className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
               required
-              
             />
             <input
+              name="email" // Tambahan wajib
               type="email"
               placeholder="Email Address"
               className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
@@ -74,6 +99,7 @@ export default function Contact() {
           </div>
           
           <textarea
+            name="message" // Tambahan wajib
             placeholder="Message"
             rows={5}
             className="w-full p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 resize-y transition-colors"

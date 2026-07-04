@@ -42,8 +42,14 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="flex flex-wrap justify-center gap-2 mb-16"
+        className="flex bg-white p-4 rounded-2xl max-w-4xl mx-auto shadow-sm border flex-wrap justify-center gap-3 mb-16"
       >
+        <div className="w-full text-center mb-2">
+          <span className="font-playpen-sans text-lg font-bold text-neutral-700">
+            Filter by Tags
+          </span>
+        </div>
+
         <button
           onClick={() => setActiveTag(null)}
           className={`font-playpen-sans text-xs font-bold tracking-wide px-3.5 py-1.5 rounded-full transition-colors ${
