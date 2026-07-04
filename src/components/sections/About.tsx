@@ -13,7 +13,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden px-6 py-24 w-full bg-[#fafafa] bg-[radial-gradient(#eaeaea_2px,transparent_1px)] [background-size:32px_32px]"
+      className="relative overflow-hidden px-6 py-24 w-full bg-[#fafafa] dark:bg-neutral-900 bg-[#fafafa] dark:bg-neutral-900 [background-size:32px_32px]"
     >
       {/* --- Section Divider "About" --- */}
       <motion.div
@@ -38,7 +38,7 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-neutral-700 shadow-md bg-neutral-200 z-10"
+              className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-neutral-700 dark:border-neutral-300 shadow-md bg-neutral-200 dark:bg-neutral-800 z-10"
             >
               <img
                 src="/images/profile.jpeg"
@@ -46,11 +46,11 @@ export default function About() {
                 className="w-full h-full object-cover transition-all duration-500"
               />
             </motion.div>
-            <div className="font-playpen-sans text-4xl font-bold text-neutral-800 mt-8">
+            <div className="font-playpen-sans text-4xl font-bold text-neutral-800 dark:text-neutral-100 mt-8">
               {name}
             </div>
 
-            <div className="font-playpen-sans text-justify text-neutral-600 text-base leading-relaxed mt-6 px-14">
+            <div className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-base leading-relaxed mt-6 px-14">
               {about}
             </div>
           </div>
@@ -96,26 +96,15 @@ export default function About() {
 
         {/* =============== KANAN: Links, Skills, Experience =============== */}
         <div className="space-y-12">
-          {/* <div className="mb-6">
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-4">
-              Links
-            </h3>
-            <div className="flex gap-4">
-              {socials.map(({ icon: Icon, href }, i) => (
-                <SocialIcon key={i} icon={Icon} href={href} />
-              ))}
-            </div>
-          </div> */}
-
           <div className="mb-6">
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-6">
+            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
               Skills
             </h3>
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, i) => (
                 <span
                   key={i}
-                  className="font-playpen-sans px-4 py-1.25 text-md rounded-2xl border-2 border-neutral-700 text-neutral-700 font-bold text-base hover:bg-neutral-700 hover:text-white transition-colors cursor-default"
+                  className="font-playpen-sans px-4 py-1.25 text-md rounded-2xl border-2 border-neutral-700 dark:border-neutral-400 text-neutral-700 dark:text-neutral-300 font-bold text-base hover:bg-neutral-700 dark:hover:bg-neutral-200 hover:text-white dark:hover:text-neutral-900 transition-colors cursor-default"
                 >
                   {skill}
                 </span>
@@ -123,7 +112,7 @@ export default function About() {
             </div>
           </div>
           <div className="mb-6">
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-6">
+            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
               Academic
             </h3>
             <div className="space-y-8">
@@ -137,20 +126,20 @@ export default function About() {
                   className="group"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-playpen-sans text-xl font-bold text-neutral-800">
+                    <h4 className="font-playpen-sans text-xl font-bold text-neutral-800 dark:text-neutral-100">
                       {edu.univ}
                     </h4>
                   </div>
                   <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
-                    <span className="font-playpen-sans font-bold text-neutral-600">
+                    <span className="font-playpen-sans font-bold text-neutral-600 dark:text-neutral-300">
                       {edu.major}
                     </span>
-                    <span className="hidden md:inline text-neutral-400">•</span>
-                    <span className="font-playpen-sans text-neutral-500">
+                    <span className="hidden md:inline text-neutral-400 dark:text-neutral-600">•</span>
+                    <span className="font-playpen-sans text-neutral-500 dark:text-neutral-400">
                       {edu.period}
                     </span>
                   </div>
-                  <p className="font-playpen-sans text-justify text-neutral-600 text-base leading-relaxed">
+                  <p className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-base leading-relaxed">
                     {edu.description}
                   </p>
                 </motion.div>
@@ -159,7 +148,7 @@ export default function About() {
           </div>
 
           <div>
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-6">
+            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
               Experience
             </h3>
             <div className="space-y-8">
@@ -173,20 +162,20 @@ export default function About() {
                   className="group"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-playpen-sans text-xl font-bold text-neutral-800">
+                    <h4 className="font-playpen-sans text-xl font-bold text-neutral-800 dark:text-neutral-100">
                       {exp.organization}
                     </h4>
                   </div>
                   <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
-                    <span className="font-playpen-sans font-bold text-neutral-600">
+                    <span className="font-playpen-sans font-bold text-neutral-600 dark:text-neutral-300">
                       {exp.role}
                     </span>
-                    <span className="hidden md:inline text-neutral-400">•</span>
-                    <span className="font-playpen-sans text-neutral-500">
+                    <span className="hidden md:inline text-neutral-400 dark:text-neutral-600">•</span>
+                    <span className="font-playpen-sans text-neutral-500 dark:text-neutral-400">
                       {exp.period}
                     </span>
                   </div>
-                  <p className="font-playpen-sans text-neutral-600 text-base leading-relaxed">
+                  <p className="font-playpen-sans text-neutral-600 dark:text-neutral-400 text-base leading-relaxed">
                     {exp.description}
                   </p>
                 </motion.div>
@@ -205,8 +194,7 @@ export default function About() {
               download
               className="group inline-flex flex-col items-start gap-1"
             >
-              <div className="flex items-center gap-2 text-neutral-800 group-hover:text-neutral-900 transition-colors">
-                {/* Ikon Unduh ditambahkan di sini */}
+              <div className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
                 <Download size={24} />
 
                 <span className="font-playpen-sans text-xl md:text-2xl font-bold">
@@ -224,7 +212,7 @@ export default function About() {
                 viewBox="0 0 120 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-neutral-400 group-hover:text-neutral-700 transition-colors"
+                className="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors"
               >
                 <path
                   d="M2 10C35.5 -1.5 84.5 -1.5 118 10"
@@ -263,8 +251,7 @@ function StickyNote({
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 250, damping: 18 }}
       style={{ backgroundColor: color }}
-      // Bagian 'rounded-xl' sudah dihapus di bawah ini
-      className={`font-playpen-sans w-42 h-42 aspect-square p-4 flex items-center justify-center text-center text-sm md:text-base font-semibold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-neutral-700/10 cursor-grab select-none ${className}`}
+      className={`font-playpen-sans w-42 h-42 aspect-square p-4 flex items-center justify-center text-center text-sm md:text-base font-semibold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-neutral-700/10 dark:border-white/10 cursor-grab select-none ${className}`}
     >
       {children}
     </motion.div>
@@ -282,7 +269,7 @@ function SocialIcon({ icon: Icon, href }: any) {
       onHoverEnd={() => setHovered(false)}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
-      className="relative w-12 h-12 rounded-2xl border-2 border-neutral-700 flex items-center justify-center text-neutral-700 hover:bg-neutral-700 hover:text-white transition-colors overflow-hidden"
+      className="relative w-12 h-12 rounded-2xl border-2 border-neutral-700 dark:border-neutral-400 flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:bg-neutral-700 dark:hover:bg-neutral-200 hover:text-white dark:hover:text-neutral-900 transition-colors overflow-hidden"
     >
       <motion.span
         animate={{ x: hovered ? -14 : 0, opacity: hovered ? 0 : 1 }}

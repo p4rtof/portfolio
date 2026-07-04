@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import Image from "next/image";
-import type { Project } from "@/data/projects";
-import { getTagColor } from "@/lib/tagColors";
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import Image from 'next/image';
+import type { Project } from '@/data/projects';
+import { getTagColor } from '@/lib/tagColors';
 
 type ProjectCardProps = Project & {
   rotate?: number;
 };
 
 const STAR_POSITIONS = [
-  { top: "-6%", left: "5%", size: 14, delay: 0 },
-  { top: "-10%", left: "85%", size: 10, delay: 0.1 },
-  { top: "50%", left: "-4%", size: 12, delay: 0.15 },
-  { top: "90%", left: "95%", size: 16, delay: 0.05 },
-  { top: "100%", left: "15%", size: 10, delay: 0.2 },
-  { top: "10%", left: "102%", size: 12, delay: 0.25 },
+  { top: '-6%', left: '5%', size: 14, delay: 0 },
+  { top: '-10%', left: '85%', size: 10, delay: 0.1 },
+  { top: '50%', left: '-4%', size: 12, delay: 0.15 },
+  { top: '90%', left: '95%', size: 16, delay: 0.05 },
+  { top: '100%', left: '15%', size: 10, delay: 0.2 },
+  { top: '10%', left: '102%', size: 12, delay: 0.25 },
 ];
 
 export default function ProjectCard({
@@ -39,9 +39,9 @@ export default function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ rotate: 0, y: -4 }}
-      transition={{ type: "spring", stiffness: 250, damping: 20 }}
+      transition={{ type: 'spring', stiffness: 250, damping: 20 }}
       style={{ rotate }}
-      className="relative border-2 border-neutral-800 bg-white rounded-sm p-4 md:p-5 flex flex-col md:flex-row gap-5"
+      className="relative border-2 border-neutral-800 dark:border-neutral-200 bg-white dark:bg-neutral-900 rounded-sm p-4 md:p-5 flex flex-col md:flex-row gap-5"
     >
       {STAR_POSITIONS.map((star, i) => (
         <motion.svg
@@ -49,7 +49,7 @@ export default function ProjectCard({
           viewBox="0 0 24 24"
           fill="currentColor"
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: star.top,
             left: star.left,
             width: star.size,
@@ -73,7 +73,7 @@ export default function ProjectCard({
         </motion.svg>
       ))}
 
-      <div className="relative w-full md:w-64 h-48 flex-shrink-0 overflow-hidden rounded-sm border border-neutral-200">
+      <div className="relative w-full md:w-64 h-48 flex-shrink-0 overflow-hidden rounded-sm border border-neutral-200 dark:border-neutral-700">
         <Image
           src={image}
           alt={title}
@@ -84,11 +84,11 @@ export default function ProjectCard({
       </div>
 
       <div className="flex flex-col justify-center">
-        <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 mb-3">
+        <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-3">
           {title}
         </h3>
 
-        <p className="font-playpen-sans text-sm text-neutral-500 leading-relaxed mb-4">
+        <p className="font-playpen-sans text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
           {description}
         </p>
 
@@ -99,7 +99,7 @@ export default function ProjectCard({
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-playpen-sans text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors"
+              className="inline-flex items-center gap-1.5 font-playpen-sans text-sm font-bold text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors"
             >
               <svg
                 width="14"
@@ -115,7 +115,7 @@ export default function ProjectCard({
                 <polyline points="15 3 21 3 21 9" />
                 <line x1="10" y1="14" x2="21" y2="3" />
               </svg>
-              Link
+              Live Demo
             </a>
           )}
 
@@ -123,7 +123,7 @@ export default function ProjectCard({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-playpen-sans text-sm font-bold text-neutral-700 hover:text-neutral-900 transition-colors"
+            className="inline-flex items-center gap-1.5 font-playpen-sans text-sm font-bold text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55v-1.94c-3.16.69-3.83-1.52-3.83-1.52-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.16a10.9 10.9 0 0 1 5.74 0c2.19-1.47 3.15-1.16 3.15-1.16.62 1.58.23 2.75.11 3.04.73.79 1.17 1.8 1.17 3.04 0 4.35-2.65 5.31-5.18 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.79.55A10.53 10.53 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z" />
@@ -139,7 +139,7 @@ export default function ProjectCard({
             return (
               <span
                 key={tag}
-                className={`${color.bg} ${color.text} text-[11px] font-bold tracking-wide px-2.5 py-1 rounded-full`}
+                className={`${color.bg} dark:bg-neutral-900 ${color.text} dark:brightness-125 text-[11px] font-bold tracking-wide px-2.5 py-1 rounded-full`}
               >
                 {tag}
               </span>
