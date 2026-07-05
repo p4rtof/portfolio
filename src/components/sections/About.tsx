@@ -13,7 +13,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden px-6 py-24 w-full bg-[#fafafa] dark:bg-neutral-900 bg-[#fafafa] dark:bg-neutral-900 [background-size:32px_32px]"
+      className="relative overflow-hidden px-4 sm:px-6 py-16 md:py-24 w-full bg-[#fafafa] dark:bg-neutral-900"
     >
       {/* --- Section Divider "About" --- */}
       <motion.div
@@ -21,24 +21,24 @@ export default function About() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-center gap-4 mb-10 max-w-5xl mx-auto"
+        className="flex items-center justify-center gap-4 mb-8 md:mb-10 max-w-5xl mx-auto"
       >
         <SectionHeading title="About Me" />
       </motion.div>
 
       <div
         ref={dragAreaRef}
-        className="relative grid grid-cols-1 md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto"
+        className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start max-w-6xl mx-auto"
       >
         {/* =============== KIRI: Foto =============== */}
         <div className="relative flex flex-col items-center">
-          <div className="relative mb-12 flex flex-col items-center">
+          <div className="relative mb-10 md:mb-12 flex flex-col items-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-neutral-700 dark:border-neutral-300 shadow-md bg-neutral-200 dark:bg-neutral-800 z-10"
+              className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-neutral-700 dark:border-neutral-300 shadow-md bg-neutral-200 dark:bg-neutral-800 z-10"
             >
               <img
                 src="/images/profile.jpeg"
@@ -46,16 +46,16 @@ export default function About() {
                 className="w-full h-full object-cover transition-all duration-500"
               />
             </motion.div>
-            <div className="font-playpen-sans text-4xl font-bold text-neutral-800 dark:text-neutral-100 mt-8">
+            <div className="font-playpen-sans text-3xl md:text-4xl font-bold text-neutral-800 dark:text-neutral-100 mt-6 md:mt-8">
               {name}
             </div>
 
-            <div className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-base leading-relaxed mt-6 px-14">
+            <div className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed mt-6 px-2 sm:px-6 md:px-14">
               {about}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 max-w-sm relative mx-auto md:mx-0 mt-12 md:mt-0">
+          <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-[280px] md:max-w-sm relative mx-auto md:mx-0 mt-10 md:mt-0">
             <StickyNote dragAreaRef={dragAreaRef} color="#fdf2d5" rotate={-3}>
               S1 Ilmu Komputer,
               <br />
@@ -65,7 +65,7 @@ export default function About() {
               dragAreaRef={dragAreaRef}
               color="#bcf5c5"
               rotate={4}
-              className="mt-6"
+              className="mt-4 md:mt-6"
             >
               Front-End
               <br />
@@ -85,7 +85,7 @@ export default function About() {
               rotate={-4}
               className="flex-col gap-1"
             >
-              <MapPin size={24} className="mx-auto mb-1 text-neutral-700" />
+              <MapPin size={20} className="mx-auto mb-1 text-neutral-700" />
               Jakarta, ID
             </StickyNote>
             <StickyNote dragAreaRef={dragAreaRef} color="#c4b5fd" rotate={5}>
@@ -95,16 +95,16 @@ export default function About() {
         </div>
 
         {/* =============== KANAN: Links, Skills, Experience =============== */}
-        <div className="space-y-12">
+        <div className="space-y-10 md:space-y-12">
           <div className="mb-6">
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
+            <h3 className="font-playpen-sans text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 md:mb-6">
               Skills
             </h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {skills.map((skill, i) => (
                 <span
                   key={i}
-                  className="font-playpen-sans px-4 py-1.25 text-md rounded-2xl border-2 border-neutral-700 dark:border-neutral-400 text-neutral-700 dark:text-neutral-300 font-bold text-base hover:bg-neutral-700 dark:hover:bg-neutral-200 hover:text-white dark:hover:text-neutral-900 transition-colors cursor-default"
+                  className="font-playpen-sans px-3 md:px-4 py-1 md:py-1.25 text-sm md:text-base rounded-2xl border-2 border-neutral-700 dark:border-neutral-400 text-neutral-700 dark:text-neutral-300 font-bold hover:bg-neutral-700 dark:hover:bg-neutral-200 hover:text-white dark:hover:text-neutral-900 transition-colors cursor-default"
                 >
                   {skill}
                 </span>
@@ -112,10 +112,10 @@ export default function About() {
             </div>
           </div>
           <div className="mb-6">
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
+            <h3 className="font-playpen-sans text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 md:mb-6">
               Academic
             </h3>
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               {academic.map((edu, index) => (
                 <motion.div
                   key={index}
@@ -126,20 +126,20 @@ export default function About() {
                   className="group"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-playpen-sans text-xl font-bold text-neutral-800 dark:text-neutral-100">
+                    <h4 className="font-playpen-sans text-lg md:text-xl font-bold text-neutral-800 dark:text-neutral-100">
                       {edu.univ}
                     </h4>
                   </div>
                   <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
-                    <span className="font-playpen-sans font-bold text-neutral-600 dark:text-neutral-300">
+                    <span className="font-playpen-sans font-bold text-sm md:text-base text-neutral-600 dark:text-neutral-300">
                       {edu.major}
                     </span>
                     <span className="hidden md:inline text-neutral-400 dark:text-neutral-600">•</span>
-                    <span className="font-playpen-sans text-neutral-500 dark:text-neutral-400">
+                    <span className="font-playpen-sans text-sm md:text-base text-neutral-500 dark:text-neutral-400">
                       {edu.period}
                     </span>
                   </div>
-                  <p className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-base leading-relaxed">
+                  <p className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
                     {edu.description}
                   </p>
                 </motion.div>
@@ -148,10 +148,10 @@ export default function About() {
           </div>
 
           <div>
-            <h3 className="font-playpen-sans text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
+            <h3 className="font-playpen-sans text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 md:mb-6">
               Experience
             </h3>
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={index}
@@ -162,20 +162,20 @@ export default function About() {
                   className="group"
                 >
                   <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-playpen-sans text-xl font-bold text-neutral-800 dark:text-neutral-100">
+                    <h4 className="font-playpen-sans text-lg md:text-xl font-bold text-neutral-800 dark:text-neutral-100">
                       {exp.organization}
                     </h4>
                   </div>
                   <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
-                    <span className="font-playpen-sans font-bold text-neutral-600 dark:text-neutral-300">
+                    <span className="font-playpen-sans font-bold text-sm md:text-base text-neutral-600 dark:text-neutral-300">
                       {exp.role}
                     </span>
                     <span className="hidden md:inline text-neutral-400 dark:text-neutral-600">•</span>
-                    <span className="font-playpen-sans text-neutral-500 dark:text-neutral-400">
+                    <span className="font-playpen-sans text-sm md:text-base text-neutral-500 dark:text-neutral-400">
                       {exp.period}
                     </span>
                   </div>
-                  <p className="font-playpen-sans text-neutral-600 dark:text-neutral-400 text-base leading-relaxed">
+                  <p className="font-playpen-sans text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
                     {exp.description}
                   </p>
                 </motion.div>
@@ -195,14 +195,19 @@ export default function About() {
               className="group inline-flex flex-col items-start gap-1"
             >
               <div className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
-                <Download size={24} />
+                <Download size={20} className="md:hidden" />
+                <Download size={24} className="hidden md:block" />
 
-                <span className="font-playpen-sans text-xl md:text-2xl font-bold">
+                <span className="font-playpen-sans text-lg md:text-2xl font-bold">
                   Download Resume
                 </span>
                 <ArrowUpRight
+                  size={20}
+                  className="md:hidden group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                />
+                <ArrowUpRight
                   size={24}
-                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                  className="hidden md:block group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                 />
               </div>
 
@@ -251,7 +256,7 @@ function StickyNote({
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 250, damping: 18 }}
       style={{ backgroundColor: color }}
-      className={`font-playpen-sans w-42 h-42 aspect-square p-4 flex items-center justify-center text-center text-sm md:text-base font-semibold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-neutral-700/10 dark:border-white/10 cursor-grab select-none ${className}`}
+      className={`font-playpen-sans w-32 h-32 md:w-42 md:h-42 aspect-square p-3 md:p-4 flex items-center justify-center text-center text-xs sm:text-sm md:text-base font-semibold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-neutral-700/10 dark:border-white/10 cursor-grab select-none ${className}`}
     >
       {children}
     </motion.div>
