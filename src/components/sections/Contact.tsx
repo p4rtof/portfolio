@@ -11,9 +11,8 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-6 py-24 w-full bg-[#fafafa] bg-[radial-gradient(#eaeaea_2px,transparent_1px)] [background-size:32px_32px]"
+      className="relative overflow-hidden px-4 sm:px-6 py-16 md:py-24 w-full bg-[#fafafa] dark:bg-neutral-900"
     >
-      {/* wajib dirender, ini yang nampilin popup toast-nya */}
       <Toaster position="top-center" />
 
       <div className="max-w-3xl mx-auto mb-6 flex flex-col items-center">
@@ -35,16 +34,18 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-center mb-10"
+          className="text-center mb-8 md:mb-10 w-full px-2"
         >
           <a
             href={emailHref}
-            className="font-playpen-sans text-3xl md:text-4xl font-light text-neutral-700 mb-10 block hover:text-neutral-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-playpen-sans text-xl sm:text-2xl md:text-4xl font-light text-neutral-700 dark:text-neutral-200 mb-6 md:mb-8 block break-all sm:break-normal hover:text-neutral-900 dark:hover:text-white transition-colors"
           >
-            aaron@gmail.com
+            fadhla153@gmail.com
           </a>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center flex-wrap gap-3 md:gap-4">
             {socials.map((social, i) => (
               <SocialIcon key={i} icon={social.icon} href={social.href} />
             ))}
@@ -57,7 +58,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-full max-w-2xl flex flex-col gap-4"
+          className="w-full max-w-2xl flex flex-col gap-3 md:gap-4"
           onSubmit={async (e) => {
             e.preventDefault();
             const form = e.currentTarget;
@@ -83,19 +84,19 @@ export default function Contact() {
             }
           }}
         >
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4">
             <input
               name="name"
               type="text"
               placeholder="Your Name"
-              className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
+              className="w-full md:w-1/2 p-3.5 md:p-4 rounded-2xl border-2 border-neutral-200 dark:border-neutral-700 font-playpen-sans text-sm md:text-base placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:focus:border-neutral-300 bg-transparent text-neutral-700 dark:text-neutral-100 transition-colors"
               required
             />
             <input
               name="email"
               type="email"
               placeholder="Email Address"
-              className="w-full md:w-1/2 p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 transition-colors"
+              className="w-full md:w-1/2 p-3.5 md:p-4 rounded-2xl border-2 border-neutral-200 dark:border-neutral-700 font-playpen-sans text-sm md:text-base placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:focus:border-neutral-300 bg-transparent text-neutral-700 dark:text-neutral-100 transition-colors"
               required
             />
           </div>
@@ -104,7 +105,7 @@ export default function Contact() {
             name="message"
             placeholder="Message"
             rows={5}
-            className="w-full p-4 rounded-2xl border-2 border-neutral-200 font-playpen-sans placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 bg-transparent text-neutral-700 resize-y transition-colors"
+            className="w-full p-3.5 md:p-4 rounded-2xl border-2 border-neutral-200 dark:border-neutral-700 font-playpen-sans text-sm md:text-base placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500 dark:focus:border-neutral-300 bg-transparent text-neutral-700 dark:text-neutral-100 resize-y transition-colors"
             required
           />
 
@@ -112,7 +113,7 @@ export default function Contact() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full py-4 mt-2 bg-[#474747] text-white rounded-2xl font-playpen-sans font-bold tracking-wide hover:bg-neutral-800 transition-colors"
+            className="w-full py-3.5 md:py-4 mt-1 md:mt-2 bg-[#474747] dark:bg-neutral-200 text-white dark:text-neutral-900 rounded-2xl font-playpen-sans font-bold tracking-wide hover:bg-neutral-800 dark:hover:bg-white transition-colors"
           >
             Send
           </motion.button>
@@ -142,7 +143,7 @@ function SocialIcon({
       onHoverEnd={() => setHovered(false)}
       whileHover={{ y: -4 }}
       transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-      className="relative w-12 h-12 rounded-2xl border-2 border-neutral-500 flex items-center justify-center text-neutral-600 hover:text-neutral-900 hover:border-neutral-900 transition-colors overflow-hidden"
+      className="relative w-11 h-11 md:w-12 md:h-12 rounded-2xl border-2 border-neutral-500 dark:border-neutral-400 flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-900 dark:hover:border-white transition-colors overflow-hidden"
     >
       <motion.span
         animate={{
@@ -162,7 +163,7 @@ function SocialIcon({
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         className="absolute"
-      >
+      > 
         <ArrowUpRight size={18} />
       </motion.span>
     </motion.a>

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Fraunces, Playpen_Sans } from "next/font/google"; 
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const fontFraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
-// Gunakan Playpen_Sans dan ubah variable jadi huruf kecil
 const fontPlaypenSans = Playpen_Sans({
   variable: "--font-playpen-sans",
   subsets: ["latin"],
@@ -26,10 +26,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${fontFraunces.variable} ${fontPlaypenSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
-      
+      <body className="min-h-full flex flex-col font-sans">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
