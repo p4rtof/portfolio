@@ -1,295 +1,144 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, ArrowUpRight, Download } from "lucide-react";
-import { useRef, useState } from "react";
-// Import data dari file profile.ts
-import { skills, socials, experiences, academic, about, name} from "@/data/profile";
+import { ArrowUpRight, Download, MapPin } from "lucide-react";
+import {
+  academic,
+  about,
+  experiences,
+  name,
+  skills,
+} from "@/data/profile";
 import SectionHeading from "@/components/ui/SectionHeading";
 
+type TimelineEntry = {
+  title: string;
+  subtitle: string;
+  period: string;
+  description: string;
+};
+
 export default function About() {
-  const dragAreaRef = useRef<HTMLDivElement>(null);
+  const timeline: TimelineEntry[] = [
+    ...academic.map((edu) => ({
+      title: edu.univ,
+      subtitle: edu.major,
+      period: edu.period,
+      description: edu.description,
+    })),
+    ...experiences.map((exp) => ({
+      title: exp.organization,
+      subtitle: exp.role,
+      period: exp.period,
+      description: exp.description,
+    })),
+  ];
 
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden px-4 sm:px-6 py-16 md:py-24 w-full bg-[#fafafa] dark:bg-neutral-900"
-    >
-      {/* --- Section Divider "About" --- */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center justify-center gap-4 mb-8 md:mb-10 max-w-5xl mx-auto"
-      >
-        <SectionHeading title="About Me" />
-      </motion.div>
+    <section id="about" className="px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading eyebrow="About" title="A bit about me" className="mb-14" />
 
-      <div
-        ref={dragAreaRef}
-        className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start max-w-6xl mx-auto"
-      >
-        {/* =============== KIRI: Foto =============== */}
-        <div className="relative flex flex-col items-center">
-          <div className="relative mb-10 md:mb-12 flex flex-col items-center">
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-[220px_1fr]">
+          {/* Left column: photo + quick facts */}
+          <div className="flex flex-row items-start gap-6 md:flex-col md:gap-6">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-neutral-700 dark:border-neutral-300 shadow-md bg-neutral-200 dark:bg-neutral-800 z-10"
+              className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-border md:h-40 md:w-40"
             >
-              <img
+              <Image
                 src="/images/profile.jpeg"
-                alt="Profile"
-                className="w-full h-full object-cover transition-all duration-500"
+                alt={name}
+                fill
+                sizes="(max-width: 768px) 96px, 160px"
+                className="object-cover"
               />
             </motion.div>
-            <div className="font-playpen-sans text-3xl md:text-4xl font-bold text-neutral-800 dark:text-neutral-100 mt-6 md:mt-8">
-              {name}
-            </div>
 
-            <div className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed mt-6 px-2 sm:px-6 md:px-14">
+            <div className="flex flex-col gap-2 text-sm text-ink-muted">
+              <p className="font-serif text-lg text-ink">{name}</p>
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin size={14} />
+                Jakarta, ID
+              </span>
+              <span>Front-end focused</span>
+              <span>Always learning &amp; building</span>
+            </div>
+          </div>
+
+          {/* Right column: bio, skills, timeline, resume */}
+          <div className="space-y-12">
+            <p className="max-w-xl text-base leading-relaxed text-ink-muted">
               {about}
-            </div>
-          </div>
+            </p>
 
-          <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-[280px] md:max-w-sm relative mx-auto md:mx-0 mt-10 md:mt-0">
-            <StickyNote dragAreaRef={dragAreaRef} color="#fdf2d5" rotate={-3}>
-              S1 Ilmu Komputer,
-              <br />
-              IPB University
-            </StickyNote>
-            <StickyNote
-              dragAreaRef={dragAreaRef}
-              color="#bcf5c5"
-              rotate={4}
-              className="mt-4 md:mt-6"
-            >
-              Front-End
-              <br />
-              Focused
-            </StickyNote>
-            <StickyNote
-              dragAreaRef={dragAreaRef}
-              color="#fca5a5"
-              rotate={2}
-              className="row-span-2"
-            >
-              Crafting immersive & interactive web experiences
-            </StickyNote>
-            <StickyNote
-              dragAreaRef={dragAreaRef}
-              color="#93c5fd"
-              rotate={-4}
-              className="flex-col gap-1"
-            >
-              <MapPin size={20} className="mx-auto mb-1 text-neutral-700" />
-              Jakarta, ID
-            </StickyNote>
-            <StickyNote dragAreaRef={dragAreaRef} color="#c4b5fd" rotate={5}>
-              Always learning & building
-            </StickyNote>
-          </div>
-        </div>
-
-        {/* =============== KANAN: Links, Skills, Experience =============== */}
-        <div className="space-y-10 md:space-y-12">
-          <div className="mb-6">
-            <h3 className="font-playpen-sans text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 md:mb-6">
-              Skills
-            </h3>
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              {skills.map((skill, i) => (
-                <span
-                  key={i}
-                  className="font-playpen-sans px-3 md:px-4 py-1 md:py-1.25 text-sm md:text-base rounded-2xl border-2 border-neutral-700 dark:border-neutral-400 text-neutral-700 dark:text-neutral-300 font-bold hover:bg-neutral-700 dark:hover:bg-neutral-200 hover:text-white dark:hover:text-neutral-900 transition-colors cursor-default"
-                >
-                  {skill}
-                </span>
-              ))}
+            <div>
+              <h3 className="mb-4 text-sm font-medium text-ink">Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full border border-border px-3.5 py-1.5 text-sm text-ink-muted transition-colors hover:border-ink-faint hover:text-ink"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="mb-6">
-            <h3 className="font-playpen-sans text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 md:mb-6">
-              Academic
-            </h3>
-            <div className="space-y-6 md:space-y-8">
-              {academic.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="group"
-                >
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-playpen-sans text-lg md:text-xl font-bold text-neutral-800 dark:text-neutral-100">
-                      {edu.univ}
-                    </h4>
-                  </div>
-                  <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
-                    <span className="font-playpen-sans font-bold text-sm md:text-base text-neutral-600 dark:text-neutral-300">
-                      {edu.major}
-                    </span>
-                    <span className="hidden md:inline text-neutral-400 dark:text-neutral-600">•</span>
-                    <span className="font-playpen-sans text-sm md:text-base text-neutral-500 dark:text-neutral-400">
-                      {edu.period}
-                    </span>
-                  </div>
-                  <p className="font-playpen-sans text-justify text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
-                    {edu.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
-          <div>
-            <h3 className="font-playpen-sans text-xl md:text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 md:mb-6">
-              Experience
-            </h3>
-            <div className="space-y-6 md:space-y-8">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="group"
-                >
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-playpen-sans text-lg md:text-xl font-bold text-neutral-800 dark:text-neutral-100">
-                      {exp.organization}
-                    </h4>
-                  </div>
-                  <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
-                    <span className="font-playpen-sans font-bold text-sm md:text-base text-neutral-600 dark:text-neutral-300">
-                      {exp.role}
-                    </span>
-                    <span className="hidden md:inline text-neutral-400 dark:text-neutral-600">•</span>
-                    <span className="font-playpen-sans text-sm md:text-base text-neutral-500 dark:text-neutral-400">
-                      {exp.period}
-                    </span>
-                  </div>
-                  <p className="font-playpen-sans text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
-                    {exp.description}
-                  </p>
-                </motion.div>
-              ))}
+            <div>
+              <h3 className="mb-6 text-sm font-medium text-ink">
+                Education &amp; experience
+              </h3>
+              <ol className="space-y-8 border-l border-border pl-6">
+                {timeline.map((entry, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className="relative"
+                  >
+                    <span className="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-accent" />
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+                      <h4 className="font-serif text-lg text-ink">
+                        {entry.title}
+                      </h4>
+                      <span className="text-xs text-ink-faint">
+                        {entry.period}
+                      </span>
+                    </div>
+                    <p className="mb-1.5 text-sm text-ink-muted">
+                      {entry.subtitle}
+                    </p>
+                    <p className="text-sm leading-relaxed text-ink-muted">
+                      {entry.description}
+                    </p>
+                  </motion.li>
+                ))}
+              </ol>
             </div>
-          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="pt-4"
-          >
             <a
               href="/resume.pdf"
               download
-              className="group inline-flex flex-col items-start gap-1"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-ink"
             >
-              <div className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
-                <Download size={20} className="md:hidden" />
-                <Download size={24} className="hidden md:block" />
-
-                <span className="font-playpen-sans text-lg md:text-2xl font-bold">
-                  Download Resume
-                </span>
-                <ArrowUpRight
-                  size={20}
-                  className="md:hidden group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                />
-                <ArrowUpRight
-                  size={24}
-                  className="hidden md:block group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                />
-              </div>
-
-              <svg
-                width="140"
-                height="10"
-                viewBox="0 0 120 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors"
-              >
-                <path
-                  d="M2 10C35.5 -1.5 84.5 -1.5 118 10"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Download size={16} />
+              Download resume
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-/* --- Sticky Note & Social Icon Components --- */
-function StickyNote({
-  children,
-  color,
-  rotate = 0,
-  className = "",
-  dragAreaRef,
-}: any) {
-  return (
-    <motion.div
-      drag
-      dragMomentum={false}
-      dragElastic={0.05}
-      dragConstraints={false}
-      initial={{ opacity: 0, y: 10, rotate: 0 }}
-      whileInView={{ opacity: 1, y: 0, rotate }}
-      whileHover={{ scale: 1.04, rotate: 0 }}
-      whileDrag={{ scale: 1.06, rotate: 0, cursor: "grabbing", zIndex: 20 }}
-      viewport={{ once: true }}
-      transition={{ type: "spring", stiffness: 250, damping: 18 }}
-      style={{ backgroundColor: color }}
-      className={`font-playpen-sans w-32 h-32 md:w-42 md:h-42 aspect-square p-3 md:p-4 flex items-center justify-center text-center text-xs sm:text-sm md:text-base font-semibold text-neutral-800 shadow-[2px_4px_8px_rgba(0,0,0,0.12)] border-neutral-700/10 dark:border-white/10 cursor-grab select-none ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function SocialIcon({ icon: Icon, href }: any) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-      className="relative w-12 h-12 rounded-2xl border-2 border-neutral-700 dark:border-neutral-400 flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:bg-neutral-700 dark:hover:bg-neutral-200 hover:text-white dark:hover:text-neutral-900 transition-colors overflow-hidden"
-    >
-      <motion.span
-        animate={{ x: hovered ? -14 : 0, opacity: hovered ? 0 : 1 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      >
-        <Icon size={18} />
-      </motion.span>
-      <motion.span
-        initial={{ x: 14, opacity: 0 }}
-        animate={{ x: hovered ? 0 : 14, opacity: hovered ? 1 : 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="absolute"
-      >
-        <ArrowUpRight size={18} />
-      </motion.span>
-    </motion.a>
   );
 }

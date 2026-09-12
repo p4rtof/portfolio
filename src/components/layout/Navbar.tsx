@@ -1,115 +1,97 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Home, User, FolderKanban, Mail, Sun, Moon } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { name } from "@/data/profile";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 const navItems = [
-  { id: 'home', label: 'Home', icon: Home, href: '/' },
-  { id: 'about', label: 'About', icon: User, href: '#about' },
-  { id: 'projects', label: 'Projects', icon: FolderKanban, href: '#projects' },
-  { id: 'contact', label: 'Contact', icon: Mail, href: '#contact' },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const [hovered, setHovered] = useState<string | null>(null);
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Mencegah error hydration dari Next.js
   useEffect(() => {
-    setMounted(true);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isDark = resolvedTheme === 'dark';
-
   return (
-    <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-      {/* Container dengan efek Glassmorphism & Support Dark Mode */}
-      <div className="flex items-end gap-2 rounded-full border border-white/20 dark:border-white/10 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-lg px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
-        
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isHovered = hovered === item.id;
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-bg/85 backdrop-blur-md border-b border-border" : "border-b border-transparent"
+      }`}
+    >
+      <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4 md:py-5">
+        <Link
+          href="/"
+          className="font-serif text-lg font-medium tracking-tight text-ink"
+        >
+          {name}
+          <span className="text-accent">.</span>
+        </Link>
 
-          return (
-            <div key={item.id} className="relative flex flex-col items-center">
-              
-              {/* --- Tooltip Label --- */}
-              <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: isHovered ? 1 : 0,
-                  y: isHovered ? -12 : 10,
-                  scale: isHovered ? 1 : 0.95,
-                }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className="absolute -top-8 text-xs font-bold text-neutral-700 dark:text-neutral-200 bg-white dark:bg-neutral-800 px-3 py-1.5 rounded-lg shadow-md pointer-events-none whitespace-nowrap"
-              >
-                {item.label}
-              </motion.span>
+        {/* Desktop links */}
+        <div className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm text-ink-muted transition-colors hover:text-ink"
+            >
+              {item.label}
+            </a>
+          ))}
+          <ThemeToggle />
+        </div>
 
-              {/* --- Icon Button --- */}
-              <motion.a
-                href={item.href}
-                onHoverStart={() => setHovered(item.id)}
-                onHoverEnd={() => setHovered(null)}
-                animate={{
-                  y: isHovered ? -8 : 0,
-                  scale: isHovered ? 1.2 : 1,
-                }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                className="flex h-10 w-12 items-center justify-center rounded-full text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white bg-transparent hover:bg-white/80 dark:hover:bg-neutral-800/80 hover:shadow-sm cursor-pointer transition-colors"
-              >
-                <Icon size={22} strokeWidth={2} />
-              </motion.a>
-              
+        {/* Mobile controls */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-ink"
+          >
+            {menuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="overflow-hidden border-b border-border bg-bg md:hidden"
+          >
+            <div className="flex flex-col gap-1 px-6 pb-5 pt-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="py-2 text-sm text-ink-muted transition-colors hover:text-ink"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
-          );
-        })}
-
-        {/* --- Garis Pemisah --- */}
-        <div className="w-[1px] h-8 bg-neutral-300 dark:bg-neutral-700 mx-1 self-center rounded-full" />
-
-        {/* --- Dark Mode Toggle Button --- */}
-        {mounted ? (
-          <div className="relative flex flex-col items-center">
-            
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{
-                opacity: hovered === 'theme' ? 1 : 0,
-                y: hovered === 'theme' ? -12 : 10,
-                scale: hovered === 'theme' ? 1 : 0.95,
-              }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className="absolute -top-8 text-xs font-bold text-neutral-700 dark:text-neutral-200 bg-white dark:bg-neutral-800 px-3 py-1.5 rounded-lg shadow-md pointer-events-none whitespace-nowrap"
-            >
-              {isDark ? 'Light Mode' : 'Dark Mode'}
-            </motion.span>
-
-            <motion.button
-              type="button"
-              onHoverStart={() => setHovered('theme')}
-              onHoverEnd={() => setHovered(null)}
-              onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              animate={{
-                y: hovered === 'theme' ? -8 : 0,
-                scale: hovered === 'theme' ? 1.2 : 1,
-              }}
-              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              className="flex h-10 w-12 items-center justify-center rounded-full text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white bg-transparent hover:bg-white/80 dark:hover:bg-neutral-800/80 hover:shadow-sm cursor-pointer transition-colors"
-            >
-              {isDark ? <Sun size={22} strokeWidth={2} /> : <Moon size={22} strokeWidth={2} />}
-            </motion.button>
-          </div>
-        ) : (
-          // placeholder biar lebar navbar nggak "loncat" pas belum mounted
-          <div className="h-10 w-12" />
+          </motion.div>
         )}
-
-      </div>
-    </nav>
+      </AnimatePresence>
+    </header>
   );
 }
