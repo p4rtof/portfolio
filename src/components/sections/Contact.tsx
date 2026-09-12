@@ -11,7 +11,7 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
 
   return (
-    <section id="contact" className="px-6 py-20 md:py-24">
+    <section id="contact" className="px-6 py-20 pb-10 md:pb-10 md:py-24">
       <Toaster position="top-center" />
 
       <div className="mx-auto max-w-4xl">
@@ -29,7 +29,7 @@ export default function Contact() {
             href={emailHref}
             className="group inline-flex items-center gap-3 font-serif text-2xl text-ink transition-colors hover:text-accent md:text-3xl"
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent transition-transform group-hover:scale-105">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent transition-transform group-hover:scale-105">
               <Mail size={18} />
             </span>
             fadhla153@gmail.com

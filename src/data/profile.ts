@@ -11,10 +11,21 @@ export const emailHref =
   "https://mail.google.com/mail/?view=cm&fs=1&to=fadhla153@gmail.com";
 
 export const skills = [
+  { name: "C++", icon: "cplusplus/cplusplus-original" },
   { name: "Java", icon: "java/java-original" },
+  { name: "Scala", icon: "scala/scala-original" },
   { name: "TypeScript", icon: "typescript/typescript-original" },
-  { name: "Golang", icon: "go/go-original-wordmark" },
-  // ...
+  { name: "JavaScript", icon: "javascript/javascript-original" },
+  { name: "HTML5", icon: "html5/html5-original" },
+  { name: "CSS3", icon: "css3/css3-original" },
+  { name: "Next.js", icon: "nextjs/nextjs-original" },
+  { name: "React", icon: "react/react-original" },
+  { name: "Tailwind CSS", icon: "tailwindcss/tailwindcss-original" },
+  { name: "Supabase", icon: "supabase/supabase-original" },
+  { name: "PostgreSQL", icon: "postgresql/postgresql-original" },
+  { name: "Git", icon: "git/git-original" },
+  { name: "Figma", icon: "figma/figma-original" },
+  { name: "Github", icon: "github/github-original" },
 ];
 
 export const socials = [

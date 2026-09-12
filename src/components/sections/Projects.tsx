@@ -27,7 +27,7 @@ export default function Projects() {
   const hasMore = filteredProjects.length > VISIBLE_COUNT;
 
   return (
-    <section id="projects" className="px-6 py-20 md:py-24">
+    <section id="projects" className="px-6 py-20 pb-10 md:pb-10 md:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           eyebrow="Projects"

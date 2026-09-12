@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="px-6 py-20 md:py-24">
+    <section id="certifications" className="px-6 py-20 pb-10 md:pb-10 md:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           eyebrow="Certifications"
@@ -54,7 +54,7 @@ export default function Certifications() {
                 {cert.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-border px-2.5 py-1 text-xs text-ink-muted"
+                    className="rounded-lg border border-border px-2.5 py-1 text-xs text-ink-muted"
                   >
                     {skill}
                   </span>

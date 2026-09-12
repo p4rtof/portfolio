@@ -63,7 +63,7 @@ export default function CertificationsPage() {
                 {cert.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-border px-2.5 py-1 text-xs text-ink-muted"
+                    className="rounded-lg border border-border px-2.5 py-1 text-xs text-ink-muted"
                   >
                     {skill}
                   </span>
