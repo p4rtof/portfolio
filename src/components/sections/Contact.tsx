@@ -11,7 +11,7 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
 
   return (
-    <section id="contact" className="px-6 py-24 md:py-32">
+    <section id="contact" className="px-6 py-20 md:py-24">
       <Toaster position="top-center" />
 
       <div className="mx-auto max-w-4xl">
@@ -60,15 +60,21 @@ export default function Contact() {
           onSubmit={async (e) => {
             e.preventDefault();
             const form = e.currentTarget;
-            const data = new FormData(form);
+            const formData = new FormData(form);
+            const payload = {
+              name: formData.get("name"),
+              email: formData.get("email"),
+              message: formData.get("message"),
+            };
+
             setSending(true);
             const toastId = toast.loading("Sending message...");
 
             try {
-              const res = await fetch("https://formspree.io/f/mbdvqbqv", {
+              const res = await fetch("/api/contact", {
                 method: "POST",
-                body: data,
-                headers: { Accept: "application/json" },
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
               });
 
               if (res.ok) {

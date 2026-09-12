@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="px-6 py-24 md:py-32">
+    <section id="certifications" className="px-6 py-20 md:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           eyebrow="Certifications"

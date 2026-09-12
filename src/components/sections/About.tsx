@@ -68,7 +68,7 @@ export default function About() {
   const scrollingTags = skills.map((skill) => skill.name);
 
   return (
-    <section id="about" className="px-6 py-24 md:py-32">
+    <section id="about" className="px-6 py-20 md:py-24">
       <div className="mx-auto max-w-4xl">
         <SectionHeading eyebrow="About" title="A bit about me" className="mb-10" />
 
@@ -100,7 +100,7 @@ export default function About() {
                 <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
                   CS Student &amp; Developer
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs  text-gray-800 font-medium">
+                <span className="inline-flex items-center gap-1 text-xs text-ink font-medium">
                   <MapPin size={12} />
                   Jakarta, ID
                 </span>
@@ -175,10 +175,10 @@ export default function About() {
 
           {/* Right: Experience + Academic */}
           <div>
-              <h3 className="mb-6 text-lg font-medium text-ink">Academic</h3>
-              <TimelineList entries={academicTimeline} />
-            </div>
-          <div className="space-y-12">
+            <h3 className="mb-6 text-lg font-medium text-ink">Academic</h3>
+            <TimelineList entries={academicTimeline} />
+          </div>
+          <div className="">
             <div>
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-lg font-medium text-ink">Experience</h3>
@@ -186,7 +186,7 @@ export default function About() {
               <TimelineList entries={experienceTimeline} />
             </div>
 
-            
+
           </div>
         </div>
       </div>
