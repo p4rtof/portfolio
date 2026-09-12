@@ -109,21 +109,6 @@ export default function About() {
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-muted">
                 {about}
               </p>
-
-              {/* Social icons */}
-              <div className="mt-4 flex gap-2.5">
-                {socials.map((social, i) => (
-                  <a
-                    key={i}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-ink-muted transition-colors hover:border-ink-faint hover:text-ink"
-                  >
-                    <social.icon size={14} />
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
 
@@ -131,118 +116,58 @@ export default function About() {
         </motion.div>
 
         {/* Two column: Skillsets (left) + Academic/Experience (right) */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-1">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[280px_1fr]">
           {/* Left: Skillsets */}
-          <div>
-            <div className="mb-6 flex items-center justify-between">
-              <h3 className="text-xl font-medium text-ink">Skillsets</h3>
-            </div>
+          {/* Left: Skillsets */}
+<div>
+  <div className="mb-6 flex items-center justify-between">
+    <h3 className="text-xl font-medium text-ink">Skillsets</h3>
+  </div>
 
-            {(() => {
-              const half = Math.ceil(skills.length / 2);
-              const row1 = skills.slice(0, half);
-              const row2 = skills.slice(half);
-
-              return (
-                <div className="space-y-2.5">
-                  {/* Baris 1 — geser ke kiri */}
-                  <div className="relative overflow-hidden">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-bg to-transparent" />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-bg to-transparent" />
-
-                    <div className="skills-marquee-left flex w-max gap-2.5">
-                      {[...row1, ...row1].map((skill, i) => (
-                        <div
-                          key={`row1-${skill.name}-${i}`}
-                          className="flex w-fit shrink-0 items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 transition-colors hover:border-ink-faint"
-                        >
-                          <div className="relative h-5 w-5 shrink-0">
-                            <Image
-                              src={`${DEVICON_BASE}/${skill.icon}.svg`}
-                              alt={skill.name}
-                              fill
-                              sizes="20px"
-                              className="object-contain"
-                            />
-                          </div>
-                          <span className="whitespace-nowrap text-sm font-medium text-ink">
-                            {skill.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Baris 2 — geser ke kanan */}
-                  <div className="relative overflow-hidden">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-bg to-transparent" />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-bg to-transparent" />
-
-                    <div className="skills-marquee-right flex w-max gap-2.5">
-                      {[...row2, ...row2].map((skill, i) => (
-                        <div
-                          key={`row2-${skill.name}-${i}`}
-                          className="flex w-fit shrink-0 items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 transition-colors hover:border-ink-faint"
-                        >
-                          <div className="relative h-5 w-5 shrink-0">
-                            <Image
-                              src={`${DEVICON_BASE}/${skill.icon}.svg`}
-                              alt={skill.name}
-                              fill
-                              sizes="20px"
-                              className="object-contain"
-                            />
-                          </div>
-                          <span className="whitespace-nowrap text-sm font-medium text-ink">
-                            {skill.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
-
-            <style>{`
-    .skills-marquee-left {
-      animation: skills-marquee-left-scroll 22s linear infinite;
-    }
-    .skills-marquee-left:hover {
-      animation-play-state: paused;
-    }
-    @keyframes skills-marquee-left-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    .skills-marquee-right {
-      animation: skills-marquee-right-scroll 22s linear infinite;
-    }
-    .skills-marquee-right:hover {
-      animation-play-state: paused;
-    }
-    @keyframes skills-marquee-right-scroll {
-      from { transform: translateX(-50%); }
-      to { transform: translateX(0); }
-    }
-  `}</style>
-          </div>
+  <div className="flex flex-wrap gap-2.5">
+    {skills.map((skill, i) => (
+      <motion.div
+        key={skill.name}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3, delay: i * 0.03 }}
+        drag
+        dragConstraints={{ top: -20, bottom: 20, left: -20, right: 20 }}
+        dragElastic={0.4}
+        whileDrag={{ scale: 1.08, zIndex: 10, cursor: "grabbing" }}
+        className="flex w-fit shrink-0 cursor-grab items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 transition-colors hover:border-ink-faint active:cursor-grabbing"
+      >
+        <div className="relative h-5 w-5 shrink-0">
+          <Image
+            src={`${DEVICON_BASE}/${skill.icon}.svg`}
+            alt={skill.name}
+            fill
+            sizes="20px"
+            className="object-contain pointer-events-none"
+          />
+        </div>
+        <span className="whitespace-nowrap text-sm font-medium text-ink pointer-events-none">
+          {skill.name}
+        </span>
+      </motion.div>
+    ))}
+  </div>
+</div>
 
           {/* Right: Experience + Academic */}
-          <div>
-            <h3 className="mb-6 text-xl font-medium text-ink">Academic</h3>
-            <TimelineList entries={academicTimeline} />
-          </div>
-          <div className="">
+          <div className="space-y-12">
+            <div>
+              <h3 className="mb-6 text-xl font-medium text-ink">Academic</h3>
+              <TimelineList entries={academicTimeline} />
+            </div>
+
             <div>
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-xl font-medium text-ink">Experience</h3>
               </div>
               <TimelineList entries={experienceTimeline} />
             </div>
-
-
           </div>
         </div>
       </div>
