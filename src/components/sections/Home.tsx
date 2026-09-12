@@ -46,14 +46,14 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5"
           >
             View projects
             <ArrowUpRight size={15} />
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink-faint"
+            className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink-faint"
           >
             Get in touch
           </a>

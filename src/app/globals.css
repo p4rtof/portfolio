@@ -5,7 +5,7 @@
    Light + dark are both first-class; toggled via .dark on <html>.
 --------------------------------------------------------- */
 :root {
-  --bg: #ffffff;
+  --bg: #F8FAFC;
   --surface: #ffffff;
   --ink: #16171b;
   --ink-muted: #6b6d76;

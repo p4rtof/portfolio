@@ -19,21 +19,47 @@ type TimelineEntry = {
   description: string;
 };
 
+function TimelineList({ entries }: { entries: TimelineEntry[] }) {
+  return (
+    <ol className="space-y-8 border-l border-border pl-6">
+      {entries.map((entry, index) => (
+        <motion.li
+          key={index}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: index * 0.05 }}
+          className="relative"
+        >
+          <span className="absolute -left-[28px] top-1.5 h-2 w-2 rounded-lg bg-accent" />
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+            <h4 className="font-serif text-lg text-ink">{entry.title}</h4>
+            <span className="text-xs text-ink-faint">{entry.period}</span>
+          </div>
+          <p className="mb-1.5 text-sm text-ink-muted">{entry.subtitle}</p>
+          <p className="text-sm leading-relaxed text-ink-muted">
+            {entry.description}
+          </p>
+        </motion.li>
+      ))}
+    </ol>
+  );
+}
+
 export default function About() {
-  const timeline: TimelineEntry[] = [
-    ...academic.map((edu) => ({
-      title: edu.univ,
-      subtitle: edu.major,
-      period: edu.period,
-      description: edu.description,
-    })),
-    ...experiences.map((exp) => ({
-      title: exp.organization,
-      subtitle: exp.role,
-      period: exp.period,
-      description: exp.description,
-    })),
-  ];
+  const academicTimeline: TimelineEntry[] = academic.map((edu) => ({
+    title: edu.univ,
+    subtitle: edu.major,
+    period: edu.period,
+    description: edu.description,
+  }));
+
+  const experienceTimeline: TimelineEntry[] = experiences.map((exp) => ({
+    title: exp.organization,
+    subtitle: exp.role,
+    period: exp.period,
+    description: exp.description,
+  }));
 
   return (
     <section id="about" className="px-6 py-24 md:py-32">
@@ -48,7 +74,7 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-border md:h-40 md:w-40"
+              className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border-2 border-white md:h-40 md:w-40"
             >
               <Image
                 src="/images/profile.jpeg"
@@ -60,7 +86,7 @@ export default function About() {
             </motion.div>
 
             <div className="flex flex-col gap-2 text-sm text-ink-muted">
-              <p className="font-serif text-lg text-ink">{name}</p>
+              <p className="font-serif text-2xl text-ink">{name}</p>
               <span className="inline-flex items-center gap-1.5">
                 <MapPin size={14} />
                 Jakarta, ID
@@ -82,7 +108,7 @@ export default function About() {
                 {skills.map((skill, i) => (
                   <span
                     key={i}
-                    className="rounded-full border border-border px-3.5 py-1.5 text-sm text-ink-muted transition-colors hover:border-ink-faint hover:text-ink"
+                    className="rounded-lg border border-border px-3.5 py-1.5 text-sm text-ink-muted transition-colors hover:border-ink-faint hover:text-ink"
                   >
                     {skill}
                   </span>
@@ -91,37 +117,13 @@ export default function About() {
             </div>
 
             <div>
-              <h3 className="mb-6 text-sm font-medium text-ink">
-                Education &amp; experience
-              </h3>
-              <ol className="space-y-8 border-l border-border pl-6">
-                {timeline.map((entry, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="relative"
-                  >
-                    <span className="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-accent" />
-                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h4 className="font-serif text-lg text-ink">
-                        {entry.title}
-                      </h4>
-                      <span className="text-xs text-ink-faint">
-                        {entry.period}
-                      </span>
-                    </div>
-                    <p className="mb-1.5 text-sm text-ink-muted">
-                      {entry.subtitle}
-                    </p>
-                    <p className="text-sm leading-relaxed text-ink-muted">
-                      {entry.description}
-                    </p>
-                  </motion.li>
-                ))}
-              </ol>
+              <h3 className="mb-6 text-sm font-medium text-ink">Academic</h3>
+              <TimelineList entries={academicTimeline} />
+            </div>
+
+            <div>
+              <h3 className="mb-6 text-sm font-medium text-ink">Experience</h3>
+              <TimelineList entries={experienceTimeline} />
             </div>
 
             <a

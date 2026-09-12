@@ -15,8 +15,8 @@ const fontInter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aaron — Front-End Developer",
-  description: "Portfolio of Aaron, a front-end focused computer science student.",
+  title: "Fadhla — Portfolio",
+  description: "Portfolio of Fadhla, a front-end focused computer science student.",
 };
 
 // Runs before hydration so the correct theme class is set on <html>

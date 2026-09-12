@@ -1,7 +1,7 @@
 import { FaEnvelope, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 
 export const name = 
-"Aaron"
+"Fadhla"
 
 export const about = 
   "Mahasiswa S1 Ilmu Komputer di IPB University yang tertarik membangun pengalaman web yang immersive dan interaktif, sambil terus belajar dari organisasi dan program pengembangan diri.";

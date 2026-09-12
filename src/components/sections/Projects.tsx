@@ -39,11 +39,10 @@ export default function Projects() {
         <div className="mb-10 flex flex-wrap gap-2">
           <button
             onClick={() => setActiveTag(null)}
-            className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-              activeTag === null
+            className={`rounded-lg border px-3.5 py-1.5 text-xs font-medium transition-colors ${activeTag === null
                 ? "border-ink bg-ink text-bg"
                 : "border-border text-ink-muted hover:border-ink-faint"
-            }`}
+              }`}
           >
             All
           </button>
@@ -53,11 +52,10 @@ export default function Projects() {
               <button
                 key={tag}
                 onClick={() => setActiveTag(isActive ? null : tag)}
-                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                  isActive
+                className={`rounded-lg border px-3.5 py-1.5 text-xs font-medium transition-colors ${isActive
                     ? "border-ink bg-ink text-bg"
                     : "border-border text-ink-muted hover:border-ink-faint"
-                }`}
+                  }`}
               >
                 {tag}
               </button>
@@ -81,15 +79,16 @@ export default function Projects() {
         )}
 
         {hasMore && (
-          <div className="mt-10">
+          <div className="mt-10 flex justify-center">
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg border border-ink px-6 py-3 text-sm font-medium text-ink transition-colors duration-300 hover:text-bg"
             >
-              View all projects
+              <span className="absolute inset-0 -translate-x-full bg-ink transition-transform duration-300 ease-out group-hover:translate-x-0" />
+              <span className="relative z-10">View all projects</span>
               <ArrowUpRight
-                size={15}
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                size={16}
+                className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               />
             </Link>
           </div>

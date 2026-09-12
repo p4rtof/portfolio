@@ -13,38 +13,43 @@ type Theme = "light" | "dark";
 type ThemeContextValue = {
   theme: Theme;
   toggleTheme: () => void;
+  mounted: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const STORAGE_KEY = "theme";
 
-function getInitialTheme(): Theme {
-  if (typeof document !== "undefined") {
-    return document.documentElement.classList.contains("dark")
-      ? "dark"
-      : "light";
-  }
-  return "light";
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // The inline script in <head> already set the class before hydration,
-  // so we just read it back rather than guessing and causing a flash.
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  // Always start with "light" so the very first client render matches
+  // the server-rendered HTML exactly — this avoids a hydration mismatch.
+  // The inline script in <head> already applied the real theme class to
+  // <html> before paint, so there's no visual flash; we just sync our
+  // React state to match it right after mount.
+  const [theme, setTheme] = useState<Theme>("light");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark", theme === "dark");
+    // Intentional one-time sync from an external system (the DOM class
+    // already set by the inline anti-flash script) right after mount.
+    const isDark = document.documentElement.classList.contains("dark");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTheme(isDark ? "dark" : "light");
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    document.documentElement.classList.toggle("dark", theme === "dark");
     window.localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, mounted }}>
       {children}
     </ThemeContext.Provider>
   );

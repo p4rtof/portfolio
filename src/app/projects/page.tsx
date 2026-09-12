@@ -37,7 +37,7 @@ export default function ProjectsPage() {
         <div className="mt-10 mb-4 flex flex-wrap gap-2">
           <button
             onClick={() => setActiveTag(null)}
-            className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
+            className={`rounded-lg border px-3.5 py-1.5 text-xs font-medium transition-colors ${
               activeTag === null
                 ? "border-ink bg-ink text-bg"
                 : "border-border text-ink-muted hover:border-ink-faint"
@@ -51,7 +51,7 @@ export default function ProjectsPage() {
               <button
                 key={tag}
                 onClick={() => setActiveTag(isActive ? null : tag)}
-                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
+                className={`rounded-lg border px-3.5 py-1.5 text-xs font-medium transition-colors ${
                   isActive
                     ? "border-ink bg-ink text-bg"
                     : "border-border text-ink-muted hover:border-ink-faint"

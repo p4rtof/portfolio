@@ -10,6 +10,7 @@ import ThemeToggle from "@/components/theme/ThemeToggle";
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications"},
   { label: "Contact", href: "#contact" },
 ];
 
@@ -60,7 +61,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-ink"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-ink"
           >
             {menuOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
