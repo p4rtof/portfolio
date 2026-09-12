@@ -34,7 +34,7 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4 md:py-5">
         <Link
           href="/"
-          className="font-serif text-lg font-medium tracking-tight text-ink"
+          className="font-serif text-2xl font-medium tracking-tight text-ink"
         >
           {name}
           <span className="text-accent">.</span>

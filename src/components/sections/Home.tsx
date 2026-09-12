@@ -6,7 +6,7 @@ import { name } from "@/data/profile";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col justify-center px-6 pt-24">
+    <section className="relative flex min-h-screen flex-col justify-center px-6 pt-18">
       <div className="mx-auto w-full max-w-4xl">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
@@ -31,7 +31,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="mt-6 max-w-md text-base leading-relaxed text-ink-muted md:text-lg"
+          className="mt-6 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg"
         >
           I study Computer Science at IPB University and spend most of my time
           shaping web experiences that feel simple, fast, and a little
@@ -60,19 +60,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <motion.a
-        href="#about"
-        aria-label="Scroll to about section"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 6, 0] }}
-        transition={{
-          opacity: { duration: 0.6, delay: 0.6 },
-          y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" },
-        }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-ink-faint"
-      >
-        <ArrowDown size={18} />
-      </motion.a>
     </section>
   );
 }

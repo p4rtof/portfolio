@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Download, MapPin } from "lucide-react";
+import { MapPin, Download, ArrowUpRight } from "lucide-react";
 import {
   academic,
   about,
   experiences,
   name,
   skills,
+  socials,
 } from "@/data/profile";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -18,6 +19,8 @@ type TimelineEntry = {
   period: string;
   description: string;
 };
+
+const DEVICON_BASE = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
 function TimelineList({ entries }: { entries: TimelineEntry[] }) {
   return (
@@ -61,83 +64,129 @@ export default function About() {
     description: exp.description,
   }));
 
+  // Pakai daftar skill sebagai isi scrolling chip strip
+  const scrollingTags = skills.map((skill) => skill.name);
+
   return (
     <section id="about" className="px-6 py-24 md:py-32">
       <div className="mx-auto max-w-4xl">
-        <SectionHeading eyebrow="About" title="A bit about me" className="mb-14" />
+        <SectionHeading eyebrow="About" title="A bit about me" className="mb-10" />
 
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-[220px_1fr]">
-          {/* Left column: photo + quick facts */}
-          <div className="flex flex-row items-start gap-6 md:flex-col md:gap-6">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border-2 border-white md:h-40 md:w-40"
-            >
+        {/* Top profile card */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 overflow-hidden rounded-2xl border border-border bg-surface p-6 sm:p-8"
+        >
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-black dark:border-white sm:h-24 sm:w-24">
               <Image
                 src="/images/profile.jpeg"
                 alt={name}
                 fill
-                sizes="(max-width: 768px) 96px, 160px"
+                sizes="96px"
                 className="object-cover"
               />
-            </motion.div>
-
-            <div className="flex flex-col gap-2 text-sm text-ink-muted">
-              <p className="font-serif text-2xl text-ink">{name}</p>
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin size={14} />
-                Jakarta, ID
-              </span>
-              <span>Front-end focused</span>
-              <span>Always learning &amp; building</span>
             </div>
-          </div>
 
-          {/* Right column: bio, skills, timeline, resume */}
-          <div className="space-y-12">
-            <p className="max-w-xl text-base leading-relaxed text-ink-muted">
-              {about}
-            </p>
+            <div className="flex-1">
+              <h3 className="font-serif text-2xl text-ink sm:text-3xl">
+                {name}
+              </h3>
 
-            <div>
-              <h3 className="mb-4 text-sm font-medium text-ink">Skills</h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill, i) => (
-                  <span
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-medium text-accent">
+                  CS Student &amp; Developer
+                </span>
+                <span className="inline-flex items-center gap-1 text-xs  text-gray-800 font-medium">
+                  <MapPin size={12} />
+                  Jakarta, ID
+                </span>
+              </div>
+
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-muted">
+                {about}
+              </p>
+
+              {/* Social icons */}
+              <div className="mt-4 flex gap-2.5">
+                {socials.map((social, i) => (
+                  <a
                     key={i}
-                    className="rounded-lg border border-border px-3.5 py-1.5 text-sm text-ink-muted transition-colors hover:border-ink-faint hover:text-ink"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-ink-muted transition-colors hover:border-ink-faint hover:text-ink"
                   >
-                    {skill}
-                  </span>
+                    <social.icon size={14} />
+                  </a>
                 ))}
               </div>
             </div>
+          </div>
 
-            <div>
-              <h3 className="mb-6 text-sm font-medium text-ink">Academic</h3>
-              <TimelineList entries={academicTimeline} />
+
+        </motion.div>
+
+        {/* Two column: Skillsets (left) + Academic/Experience (right) */}
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-1">
+          {/* Left: Skillsets */}
+          <div>
+            <div className="mb-6 flex items-center justify-between">
+              <h3 className="text-lg font-medium text-ink">Skillsets</h3>
+              <a
+                href="/resume.pdf"
+                download
+                className="group inline-flex items-center gap-1.5 text-md  font-medium text-ink-muted transition-colors hover:text-ink"
+              >
+                <Download size={13} />
+                Resume
+              </a>
             </div>
 
+            <div className="flex flex-wrap gap-2.5">
+              {skills.map((skill, i) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.03 }}
+                  className="flex w-fit items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 transition-colors hover:border-ink-faint"
+                >
+                  <div className="relative h-5 w-5 shrink-0">
+                    <Image
+                      src={`${DEVICON_BASE}/${skill.icon}.svg`}
+                      alt={skill.name}
+                      fill
+                      sizes="20px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="whitespace-nowrap text-sm font-medium text-ink">
+                    {skill.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Experience + Academic */}
+          <div>
+              <h3 className="mb-6 text-lg font-medium text-ink">Academic</h3>
+              <TimelineList entries={academicTimeline} />
+            </div>
+          <div className="space-y-12">
             <div>
-              <h3 className="mb-6 text-sm font-medium text-ink">Experience</h3>
+              <div className="mb-6 flex items-center justify-between">
+                <h3 className="text-lg font-medium text-ink">Experience</h3>
+              </div>
               <TimelineList entries={experienceTimeline} />
             </div>
 
-            <a
-              href="/resume.pdf"
-              download
-              className="group inline-flex items-center gap-2 text-sm font-medium text-ink"
-            >
-              <Download size={16} />
-              Download resume
-              <ArrowUpRight
-                size={16}
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
+            
           </div>
         </div>
       </div>

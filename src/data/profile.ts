@@ -11,11 +11,10 @@ export const emailHref =
   "https://mail.google.com/mail/?view=cm&fs=1&to=fadhla153@gmail.com";
 
 export const skills = [
-  "C++", "C", "Java", "Scala", "HTML", "CSS","JavaScript", "OOP",
-  "Next.js",
-  "React.js",
-  "TailwindCSS",
-  "PostgreSQL","Godot Engine"
+  { name: "Java", icon: "java/java-original" },
+  { name: "TypeScript", icon: "typescript/typescript-original" },
+  { name: "Golang", icon: "go/go-original-wordmark" },
+  // ...
 ];
 
 export const socials = [
@@ -39,7 +38,8 @@ export const experiences = [
     organization: "Himalkom IPB",
     role: "Secretary of Research and Technology Department",
     period: "January 2026 - Present",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    // tags: ["IT Infrastructure", "CI/CD", "Dokploy", "Bun", "Hono", "React", "TypeScript"],
   },
   {
     organization: "ITTODAY IPB",
